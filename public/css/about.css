@@ -1,0 +1,20 @@
+.center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#about {
+    font-size: x-large;
+    color: white;
+    text-align: center;
+}
+
+#about-title {
+    color: white;
+    text-decoration: underline white;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="./css/cover.css"/>
+  <link rel="stylesheet" href="./css/store.css"/>
+
+  <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+  <script src="./js/store.js"></script>
+
+  <title>Music Store</title>
+</head>
+
+<body>
+
+  <div class="vignette" style="z-index: -1;">
+    <div id="bar">
+      <div id="title">Music Store</div>
+      <div id="menu">
+        <div>
+          <a href="./trabalho_final.html" class="hover-menu">Home</a>
+        </div>
+        <div>
+          <a href="./store.html" class="hover-menu">Store</a>
+        </div>
+        <div>
+          <a href="./about.html" class="hover-menu">About us</a>
+        </div>
+      </div>
+      <div id="cart-div">
+        <input type="button" value="Cart" id="btn-cart" onclick="btnCart()">
+        <div id="cart-body" hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <div id="form" hidden="true">
+      <form>
+        <div class="form-group">
+          <label for="nameInput">Nome</label>
+          <input type="text" class="form-input" id="nameInput" placeholder="Nome">
+        </div>
+      </form>
+    </div>
+
+
+    <div id="main" style="display:grid">
+
+      <div class="product">
+        <div>
+          <img src="img/stratocaster.jpg" class="img-product">
+        </div>
+        <div class="field-product">
+          <span class="title-product">Stratocaster</span>
+          <p style="padding-bottom: 70pt;" class="description-product">
+            The Fender Stratocaster, colloquially known as the Strat,
+            is a model of electric guitar designed from 1952 into 1954 by Leo Fender, Bill Carson,
+            George Fullerton and Freddie Tavares.
+          </p>
+          <p>
+            <span class="price-product">
+              Price: $<span class="white">2000</span>
+            </span>
+          </p>
+          <input type="button" value="Buy it" class="btn-buy" onclick="btnClicked(this)">
+        </div>
+      </div>
+
+      <div class="product">
+        <div>
+          <img src="img/lespaul.jpg" class="img-product">
+        </div>
+        <div class="field-product">
+          <span class="title-product">Les Paul</span>
+          <p style="padding-bottom: 64pt;" class="description-product">
+            The Gibson Les Paul is a solid body electric guitar that was
+            first sold by the Gibson Guitar Corporation in 1952.
+          </p>
+          <p>
+            <span class="price-product">
+              Price: $<span class="white">2500</span>
+            </span>
+          </p>
+          <input type="button" value="Buy it" class="btn-buy" onclick="btnClicked(this)">
+        </div>
+      </div>
+
+      <div class="product">
+        <div>
+          <img src="img/telecaster.png" class="img-product">
+        </div>
+        <div class="field-product">
+          <span class="title-product">Telecaster</span>
+          <p style="padding-bottom: 38pt;" class="description-product">
+            The archetypical Fender Telecaster is a solid-body electric guitar with a
+            flat asymmetric single-cutaway body; the body
+            is usually made from alder or ash.
+          </p>
+          <p>
+            <span class="price-product">
+              Price: $<span class="white">3000</span>
+            </span>
+          </p>   
+          <input type="button" value="Buy it" class="btn-buy" onclick="btnClicked(this)">
+        </div>
+      </div>
+
+      <div class="product">
+        <div>
+          <img src="img/sg.jpg" class="img-product">
+        </div>
+        <div class="field-product">
+          <span class="title-product">Les Paul SG</span>
+          <p style="padding-bottom: 50pt;" class="description-product">
+            The Gibson SG is a solid-body electric guitar model
+            introduced by Gibson in 1961 as the Gibson Les Paul SG.
+          </p>
+          <p>
+            <span class="price-product">
+              Price: $<span class="white">4000</span>
+            </span>
+          </p>   
+          <input type="button" value="Buy it" class="btn-buy" onclick="btnClicked(this)">
+        </div>
+      </div>
+
+      <div class="product">
+        <div>
+          <img src="img/semiacoustic.jpg" class="img-product">
+        </div>
+        <div class="field-product">
+          <span class="title-product">Semi-Acoustic Guitar</span>
+          <p style="padding-bottom: 23pt;" class="description-product">
+            A semi-acoustic guitar, hollow-body electric, or thinline is a
+            type of electric guitar that was first created in the 1930s.
+          </p>
+          <p>
+            <span class="price-product">
+              Price: $<span class="white">5000</span>
+            </span>
+          </p>   
+          <input type="button" value="Buy it" class="btn-buy" onclick="btnClicked(this)">
+        </div>
+      </div>
+
+      <div class="product">
+        <div>
+          <img src="img/jazzmaster.jpg" class="img-product">
+        </div>
+        <div class="field-product">
+          <span class="title-product">Jazzmaster</span>
+          <p style="padding-bottom: 50pt;" class="description-product">
+            The Fender Jazzmaster is an electric guitar designed as a
+            more expensive sibling of the Fender Stratocaster.
+          </p>
+          <p>
+            <span class="price-product">
+              Price: $<span class="white">6000</span>
+            </span>
+          </p>   
+          <input type="button" value="Buy it" class="btn-buy" onclick="btnClicked(this)">
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div>
+        <input id="footer-btn" type="button" value="Ver atualizações" onclick="mostrarAtt()">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
