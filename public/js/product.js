@@ -1,8 +1,10 @@
+import { btnClicked } from "./cart.js" 
+
 /**
  * Generates html for a product
  * @param {Object} productTobeRendered 
  */
-export const Product = ({ name, price, type }) => {
+export const Product = ({ name, description, price, type }) => {
     const mainDivRef = document.getElementById('main')
 
     // main div
@@ -25,13 +27,22 @@ export const Product = ({ name, price, type }) => {
     const priceSpan = document.createElement('span')
     const inputBtn = document.createElement('input')
 
+    // setando classes
     fieldDiv.classList.add('field-product')
     titleSpan.classList.add('title-product')
     descriptionP.classList.add('description-product')
     priceSpan.classList.add('price-product')
+    inputBtn.classList.add('btn-buy')
 
+    // setando HTML
     titleSpan.innerHTML = name
     priceSpan.innerHTML = `Price: $<span class="white">${price}</span>`
+    descriptionP.innerHTML = description
+
+    // setando input
+    inputBtn.setAttribute('type', 'button')
+    inputBtn.setAttribute('value', 'Buy it')
+    inputBtn.addEventListener('click', btnClicked)
 
     fieldDiv.appendChild(titleSpan)
     fieldDiv.appendChild(descriptionP)

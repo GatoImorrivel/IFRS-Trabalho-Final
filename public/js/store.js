@@ -1,8 +1,8 @@
-import { Product, updateProduct } from './product.js'
-import { btnCart, updateCart } from './cart.js'
-import { fetchAllProductsAndDisplay, appendToDatabase } from './database.js'
+import { Product } from './product.js'
+import { appendToDatabase } from './database.js'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js'
 import { onValue, ref, getDatabase } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
+import { btnCart } from './cart.js'
 
 //#region firebase init
 const config = {
@@ -26,7 +26,7 @@ document.getElementsByTagName('head')[0].appendChild(jqueryScript)
 //#endregion
 
 onValue(ref(getDatabase(), 'products'), snapshot => {
-    $
+    $('#main').html('')
 
     const data = snapshot.val()
     const propertiesName = Object.keys(data)
@@ -35,7 +35,7 @@ onValue(ref(getDatabase(), 'products'), snapshot => {
     })
 })
 
-//await appendToDatabase("teste", 2000, "testeType")
+document.getElementById('btn-cart').addEventListener('click', btnCart)
 
 function mostrarAtt() {
     alert('Estou usando os seguintes metodos: \n getElementsByTagName \n getElementsByClassName \n getElementById')

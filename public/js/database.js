@@ -1,16 +1,18 @@
-import { Product } from './product.js'
-
 import { getDatabase, ref, child, get, push, update } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
 
 /**
  * Takes a product object and writes it to the databas
- * @param {Object} objectToBeWritten 
+ * @param {String} name 
+ * @param {String} description 
+ * @param {Number} price 
+ * @param {String} type 
  */
-export const appendToDatabase = async (name, price, type ) => {
+export const appendToDatabase = async (name, description, price, type) => {
     const db = getDatabase()
 
     const postData = {
         name: name,
+        description: description,
         price: price,
         type: type,
     }
