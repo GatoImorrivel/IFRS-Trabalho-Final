@@ -1,4 +1,4 @@
-import { getDatabase, ref, child, get, push, update } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
+import { getDatabase, ref, child, get, push, update, remove} from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
 
 /**
  * Takes a product object and writes it to the databas
@@ -7,14 +7,14 @@ import { getDatabase, ref, child, get, push, update } from 'https://www.gstatic.
  * @param {Number} price 
  * @param {String} type 
  */
-export const appendToDatabase = async (name, description, price, type) => {
+export const appendToDatabase = async (name, description, price, image) => {
     const db = getDatabase()
 
     const postData = {
         name: name,
         description: description,
         price: price,
-        type: type,
+        image: image,
     }
 
     const postKey = push(child(ref(db), 'products')).key
@@ -25,23 +25,22 @@ export const appendToDatabase = async (name, description, price, type) => {
     return update(ref(db), updates)
 }
 
-export const fetchAllProductsAndDisplay = async () => {
-    let data = await readFromDatabase()
-    data.map(item => {
-        console.log('balls')
-    })
-}
-
 export const readFromDatabase = async () => {
     let data = [] 
 
     get(child(ref(getDatabase()), 'products'))
     .then((snapshot) => {
         data.push(snapshot.val().product)
-        console.log(snapshot.val())
     })
     .catch((error) => {
         console.log("error: "+error)
     })
     return data
 } 
+
+export const removeFromDatabase = key => {
+    const db = getDatabase()
+    const target = ref(db, 'products/' + key)
+    console.log(target) 
+    remove(target)
+}

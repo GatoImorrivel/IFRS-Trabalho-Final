@@ -73,7 +73,7 @@ body {
   border-top: none;
 }
 
-#btn-cart {
+.btn-bar-style {
   padding: 2pt;
   padding-right: 2%;
   padding-left: 1.9%;
@@ -84,7 +84,7 @@ body {
   background-color: rgb(22, 21, 21);
 }
 
-#btn-cart:hover {
+.btn-bar-style:hover {
   background-color: rgb(93, 155, 0);
 }
 
@@ -97,6 +97,8 @@ body {
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   grid-template-columns: repeat(3, 1fr);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 #main > div {
@@ -112,11 +114,19 @@ body {
 .field-product {
   color: white;
   background-color: rgb(22, 21, 21);
+  display: flex;
+  flex-direction: column;
 }
 
 .description-product {
   margin: 20px;
   text-align: justify;
+  max-width: 50%;
+  overflow-wrap: break-word;
+  align-self: center;
+}
+
+.img-wrapper {
 }
 
 .img-product {  
@@ -129,6 +139,9 @@ body {
 .price-product {
   color:rgb(107, 107, 207);
   font-size: 1.3em;
+  max-width: 50%;
+  align-self: center;
+  overflow-wrap: break-word;
 }
 
 .white{
@@ -137,6 +150,9 @@ body {
 
 .title-product {
   font-size: 1.3em;
+  max-width: 50%;
+  align-self: center;
+  overflow-wrap: break-word;
 }
 
 .btn-buy {
@@ -150,7 +166,7 @@ body {
   border: 1px solid rgb(107, 107, 207);
   border-radius: 5%;
   background-color: rgb(22, 21, 21);
-  z-index: 9;
+  z-index: 1;
 }
 
 .btn-buy:hover {
@@ -166,7 +182,102 @@ body {
 }
 
 #form {
-  background-color: red;
-  height: 100vh;
-  width: 100vw;
+  overflow-y: scroll;
+  max-height: 75vh;
+  min-height: fit-content;
+  background-color: rgb(43, 41, 41);
+  position: fixed;
+  width: 50%;
+  left: 50%;
+  border-radius: 5pt;
+  padding: 1rem 0rem;
+  box-shadow: inset 0 0 0.5em rgb(93, 155, 0);
+  z-index: 2;
+}
+
+.form-group {
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-label {
+  margin-left: 2%;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  padding-left: 0rem;
+}
+
+.form-input {
+  width: 94%;
+  margin-left: 2%;
+  padding: 0.5rem;
+  border-style: solid;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: rgb(93, 155, 0);
+}
+
+#form-add-btn {
+  width: 94%;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-color: rgb(93, 155, 0);
+  border-style: solid;
+  font-size: 2rem;
+}
+
+#form-add-btn:hover {
+  background-color: rgb(93, 155, 0);  
+}
+
+#form-close-btn {
+  width: 94%;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-color: rgb(214, 61, 50);
+  border-style: solid;
+  font-size: 2rem;
+}
+
+#form-close-btn:hover {
+  background-color: rgb(214, 61, 50);  
+}
+
+#file-display {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#file-display-img {
+  max-height: 100%;
+  max-width: 85%;
+}
+
+.btn-remove {
+  color: white;
+  width: 60px;
+  margin-top: 5%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 30px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(214, 61, 50);
+  border-radius: 5%;
+  background-color: rgb(22, 21, 21);
+  z-index: 1;
+}
+
+.btn-remove:hover {
+  cursor: pointer;
+  background-color: rgb(214, 61, 50);
+}
+
+.buttons-div {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
 }

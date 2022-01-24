@@ -10,14 +10,14 @@
 
   <script type="module" src="./js/store.js"></script>
 
-  <title>Music Store</title>
+  <title>Fake Store</title>
 </head>
 
 <body>
 
-  <div class="vignette" style="z-index: -1;">
+  <div class="vignette" style="z-index: -1; min-height: 100vh;">
     <div id="bar">
-      <div id="title">Music Store</div>
+      <div id="title">Fake Store</div>
       <div id="menu">
         <div>
           <a href="./trabalho_final.html" class="hover-menu">Home</a>
@@ -30,28 +30,40 @@
         </div>
       </div>
       <div id="cart-div">
-        <input type="button" value="Cart" id="btn-cart">
+        <input type="button" value="Cart" id="btn-cart" class="btn-bar-style">
+        <input type="button" value="Add produto" id="btn-form" class="btn-bar-style">
         <div id="cart-body" hidden="true">
         </div>
       </div>
     </div>
 
-    <div id="form" hidden="true">
+    <div id="form" class="center" hidden="true">
       <form>
         <div class="form-group">
-          <label for="nameInput">Nome</label>
+          <label for="nameInput" class="form-label">Nome</label>
           <input type="text" class="form-input" id="nameInput" placeholder="Nome do instrumento">
         </div>
+        <div class="form-group">
+          <label for="descriptionInput" class="form-label">Descrição</label>
+          <input type="text" class="form-input" id="descriptionInput" placeholder="Descrição">
+        </div>
+        <div class="form-group">
+          <label for="precoInput" class="form-label">Preço</label>
+          <input type="text" class="form-input" id="precoInput" placeholder="Preço do instrumento">
+        </div>
+        <div class="form-group">
+          <label for="imageInput" class="form-label">Imagem</label>
+          <input type="file" class="form-input" id="imageInput" placeholder="Imagem de exibição">
+        </div>
+        
+        <div id="file-display"></div>
+        <button id="form-add-btn">Adicionar</button>
+        <button id="form-close-btn">Fechar</button>
       </form>
     </div>
 
-    <div id="main" style="display:grid"></div>
 
-    <div id="footer">
-      <div>
-        <input id="footer-btn" type="button" value="Ver atualizações" onclick="mostrarAtt()">
-      </div>
-    </div>
+    <div id="main" style="display:grid"></div>
   </div>
 </body>
 

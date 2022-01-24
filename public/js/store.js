@@ -1,4 +1,4 @@
-import { Product } from './product.js'
+import { Product, showAddForm } from './product.js'
 import { appendToDatabase } from './database.js'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js'
 import { onValue, ref, getDatabase } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
@@ -25,21 +25,67 @@ jqueryScript.type = 'text/javascript'
 document.getElementsByTagName('head')[0].appendChild(jqueryScript)
 //#endregion
 
+
 onValue(ref(getDatabase(), 'products'), snapshot => {
     $('#main').html('')
 
+    if(!snapshot.exists()) {
+        return
+    }
+
     const data = snapshot.val()
     const propertiesName = Object.keys(data)
+
     propertiesName.map(item => {
-        Product(data[item])
+        const obj = data[item]
+        Product(obj.name, obj.description, obj.price, obj.image, item)
     })
 })
 
-document.getElementById('btn-cart').addEventListener('click', btnCart)
-
-function mostrarAtt() {
-    alert('Estou usando os seguintes metodos: \n getElementsByTagName \n getElementsByClassName \n getElementById')
-    alert('getElementsByTagName está sendo usado para pegar a imagem do produto escolhido pelo usuario')
-    alert('getElementsByClassName está sendo usado para pegar o titulo e o preço do produto clicado pelo usuario')
-    alert('getElementById está sendo usado para acessar o corpo do carrinho')
+function defer(method) {
+    if (window.jQuery) {
+        method();
+    } else {
+        setTimeout(function() { defer(method) }, 50);
+    }
 }
+
+defer(() => {
+    $('#form').submit((event) => {
+        event.preventDefault()
+    })
+    $('#btn-cart').on('click', btnCart)
+    $('#btn-form').on('click', showAddForm)
+    $('#form-close-btn').on('click', showAddForm)
+    $('#imageInput').on('change', () => {
+        const file = document.getElementById('imageInput').files[0]
+        const displayArea = document.getElementById('file-display')
+        const imageType = /image.*/
+
+        if (file.type.match(imageType)) {
+            const reader = new FileReader()
+
+            reader.onload = event => {
+                displayArea.innerHTML = ''
+
+                const img = new Image()
+                img.src = reader.result
+                img.setAttribute('id', 'file-display-img')
+
+                displayArea.appendChild(img)
+            }
+
+            reader.readAsDataURL(file)
+        } else {
+            displayArea.innerHTML = 'File not supported'
+        }
+    })
+    $('#form-add-btn').on('click', () => {
+        const name = $('#nameInput').val()
+        const description = $('#descriptionInput').val()
+        const price = $('#precoInput').val()
+        const imageData = $('#file-display-img').attr('src')
+
+        appendToDatabase(name, description, price, imageData)
+    })
+})
