@@ -29,17 +29,33 @@ document.getElementsByTagName('head')[0].appendChild(jqueryScript)
 onValue(ref(getDatabase(), 'products'), snapshot => {
     $('#main').html('')
 
+    console.log('wtf')
+
+    const mainDiv = document.getElementById('main')
+
     if(!snapshot.exists()) {
+        console.log('no data in database')
         return
     }
 
     const data = snapshot.val()
     const propertiesName = Object.keys(data)
+    const numberOfDivs = Math.ceil(propertiesName.length / 3);
 
-    propertiesName.map(item => {
-        const obj = data[item]
-        Product(obj.name, obj.description, obj.price, obj.image, item)
-    })
+    for (let i = 0; i < numberOfDivs; i++) {
+        const div = document.createElement('div')
+        div.classList.add('product-row')
+        mainDiv.appendChild(div) 
+
+        for (let x = 0; x < 3; x++) {
+            const currentProductIndex = x + (3 * i)
+            if (currentProductIndex > propertiesName.length - 1) {
+                break
+            }
+            const obj = data[propertiesName[currentProductIndex]]
+            Product(obj.name, obj.description, obj.price, obj.image, propertiesName[currentProductIndex], div)
+        }
+    }
 })
 
 function defer(method) {
@@ -81,11 +97,18 @@ defer(() => {
         }
     })
     $('#form-add-btn').on('click', () => {
-        const name = $('#nameInput').val()
-        const description = $('#descriptionInput').val()
-        const price = $('#precoInput').val()
-        const imageData = $('#file-display-img').attr('src')
+        const name = $('#nameInput')
+        const description = $('#descriptionInput')
+        const price = $('#precoInput')
+        const imageData = $('#file-display-img')
+        const imageInput = $('#imageInput')
 
-        appendToDatabase(name, description, price, imageData)
+        appendToDatabase(name.val(), description.val(), price.val(), imageData.attr('src'))
+
+        name.val('')
+        description.val('')
+        price.val('')
+        imageData.attr('src', '')
+        imageInput.val('')
     })
 })

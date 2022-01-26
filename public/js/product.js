@@ -1,4 +1,4 @@
-import { btnClicked } from './cart.js' 
+import { updateCart } from './cart.js' 
 import { removeFromDatabase } from './database.js'
 
 let isFormHidden = true
@@ -10,10 +10,8 @@ let isFormHidden = true
  * @param {Number} price 
  * @param {String} imageData 
  */
-export const Product = (name, description, price, imageData, key) => {
-    const mainDivRef = document.getElementById('main')
-
-    // main div
+export const Product = (name, description, price, imageData, key, parentDiv) => {
+    // product div
     const productDiv = document.createElement('div')
     productDiv.classList.add('product')
     productDiv.setAttribute('id', key)
@@ -71,22 +69,29 @@ export const Product = (name, description, price, imageData, key) => {
 
     productDiv.appendChild(fieldDiv)
 
-    mainDivRef.appendChild(productDiv)
+    parentDiv.appendChild(productDiv)
+
+    console.log('Created: ' + name)
 }
 
 export const showAddForm = () => {
+    const name = $('#nameInput')
+    const description = $('#descriptionInput')
+    const price = $('#precoInput')
+    const imageData = $('#file-display-img')
+    const imageInput = $('#imageInput')
+
+    name.val('')
+    description.val('')
+    price.val('')
+    imageData.attr('src', '')
+    imageInput.val('')
+
     // Situação: Achar por id
     isFormHidden = !isFormHidden
     // Situação: Alterar atributo
     document.getElementById('form').hidden = isFormHidden
 } 
-
-export const updateProduct = (price, image) => {
-    // Situação: Alterar imagem
-    image.attr('src','./img/sold_banner.png')
-    // Situação: Alterar html interno
-    price.parent().html('')
-}
 
 /**
  * Removes the parent product of the button
@@ -97,3 +102,32 @@ function removeEvent(button) {
     console.log(productKey)
     removeFromDatabase(productKey)
 } 
+
+/**
+ * Callback function for when the buy button is pressed in a product
+ * @param {HTMLElement} button 
+ */
+function btnClicked(button) {
+    // Situação: Achar por tag
+    const image = $(button.target).parent().parent().parent().find('.img-wrapper').find('img') 
+    // Situação: Achar por classe
+    const name = $(button.target).parent().parent().find('.title-product')
+    // Situação: Achar por classe
+    const price = $(button.target).parent().parent().find('.price-product').find('.white')
+    // Situação: Pegar html interno
+    const priceFloat = Number.parseFloat(price.html()).toFixed(2)
+
+    button.target.value = 'In Cart'
+    button.target.style.color = '#5d9b00'
+    button.target.disabled = true
+
+    updateProduct(price, image)
+    updateCart(priceFloat, name)
+}
+
+const updateProduct = (price, image) => {
+    // Situação: Alterar imagem
+    image.addClass('grayout')
+    // Situação: Alterar html interno
+    price.parent().html('')
+}

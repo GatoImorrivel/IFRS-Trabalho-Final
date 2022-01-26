@@ -5,6 +5,7 @@ body {
   text-align: center;
   line-height: 26px;
   background-color: rgb(34, 33, 33);
+  overflow-x: hidden;
 }
 
 #footer {
@@ -30,7 +31,7 @@ body {
 #bar {
   background-color: rgb(43, 41, 41);
   width: 100%;
-  height: 4%;
+  height: 2.5rem;
   position: fixed;
   z-index: 9;
   border-bottom: 1pt solid rgba(255, 255, 255, 0.5);
@@ -91,24 +92,26 @@ body {
 .vignette {
   object-fit: fill;
   height: fit-content;
+  width: 100vw;
 }
 
 #main {
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-#main > div {
-  width: 75%;
-  height: 75%;
+.product-row {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
 }
 
 .product {
-  margin: 50px;
+  margin: 5rem;
   background-color: white;
+  width: 25%;
 }
 
 .field-product {
@@ -126,7 +129,8 @@ body {
   align-self: center;
 }
 
-.img-wrapper {
+.grayout {
+  filter: grayscale(1) blur(2px);
 }
 
 .img-product {  
