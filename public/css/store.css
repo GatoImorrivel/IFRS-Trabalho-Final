@@ -72,13 +72,17 @@ body {
   margin-top: 0.45%;
   margin-left: 37.5%;
   width: 25%;
-  background-color: rgb(43, 41, 41);
+  background-color: rgb(29, 32, 38);
   display: none;
   grid-column-gap: 24px;
   grid-row-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
   border:rgba(255, 255, 255, 0.5) solid 1pt;
   border-top: none;
+}
+
+.cart-product-name {
+  overflow-x: hidden;
 }
 
 .btn-bar-style {
@@ -228,7 +232,7 @@ body {
   border-style: solid;
   border-color: #736b5e;
   background-color: #181a1b;
-  color: #736b5e;
+  color: #e8e6e3;
   outline: none;
 }
 
