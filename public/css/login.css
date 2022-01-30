@@ -86,14 +86,9 @@ form {
   margin-left: 2%;
 }
 
-
 .btn-wrapper button:hover {
   cursor: pointer;
   background-color: rgb(93, 155, 0);
-}
-
-.btn-wrapper button:focus {
-  background-color: red;
 }
 
 .result-wrapper {

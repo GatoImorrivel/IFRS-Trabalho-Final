@@ -94,17 +94,25 @@ defer(() => {
             return
         }
 
+        if (user.name == '' || user.password == '') {
+            resultRef.hidden = false
+            resultRef.style.backgroundColor = errorColor
+            resultRef.children[0].innerHTML = 'Invalid input'
+            return
+        }
+
         fetch(databaseUrl + 'users/.json', {
             method: 'POST',
             body: JSON.stringify(user)
         })
             .then(response => {
-                resultRef.hidden = false
-                resultRef.style.backgroundColor = sucessColor
-                resultRef.children[0].innerHTML = 'Success'
                 response.json()
                     .then(data => {
+                        resultRef.hidden = false
+                        resultRef.style.backgroundColor = sucessColor
+                        resultRef.children[0].innerHTML = 'Success'
                         window.localStorage.setItem('user', data.name)
+                        window.location = './store.html'
                     })
                     .catch(error => {
                         console.log('error: ' + error)
