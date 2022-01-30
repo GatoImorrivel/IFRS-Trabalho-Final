@@ -1,4 +1,5 @@
 import { Product, showAddForm } from './product.js'
+import { readUsers } from './database.js'
 import { appendToDatabase } from './database.js'
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js'
 import { onValue, ref, getDatabase } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
@@ -25,15 +26,19 @@ jqueryScript.type = 'text/javascript'
 document.getElementsByTagName('head')[0].appendChild(jqueryScript)
 //#endregion
 
+console.log(window.localStorage.getItem('user'))
+
+if (window.localStorage.getItem('user') == null) {
+    window.location = './login.html'
+}
 
 onValue(ref(getDatabase(), 'products'), snapshot => {
     $('#main').html('')
-
-    console.log('wtf')
+    $('#cart-body').html('')
 
     const mainDiv = document.getElementById('main')
 
-    if(!snapshot.exists()) {
+    if (!snapshot.exists()) {
         console.log('no data in database')
         return
     }
@@ -45,7 +50,7 @@ onValue(ref(getDatabase(), 'products'), snapshot => {
     for (let i = 0; i < numberOfDivs; i++) {
         const div = document.createElement('div')
         div.classList.add('product-row')
-        mainDiv.appendChild(div) 
+        mainDiv.appendChild(div)
 
         for (let x = 0; x < 3; x++) {
             const currentProductIndex = x + (3 * i)
@@ -53,16 +58,16 @@ onValue(ref(getDatabase(), 'products'), snapshot => {
                 break
             }
             const obj = data[propertiesName[currentProductIndex]]
-            Product(obj.name, obj.description, obj.price, obj.image, propertiesName[currentProductIndex], div)
+            Product(obj.name, obj.description, obj.price, obj.image, obj.creator, propertiesName[currentProductIndex], div)
         }
     }
 })
 
 function defer(method) {
     if (window.jQuery) {
-        method();
+        method()
     } else {
-        setTimeout(function() { defer(method) }, 50);
+        setTimeout(function () { defer(method) }, 50)
     }
 }
 
@@ -103,12 +108,23 @@ defer(() => {
         const imageData = $('#file-display-img')
         const imageInput = $('#imageInput')
 
-        appendToDatabase(name.val(), description.val(), price.val(), imageData.attr('src'))
+        let creatorName = ''
+        readUsers()
+        .then(data => {
+            if (data == null)
+                return
 
-        name.val('')
-        description.val('')
-        price.val('')
-        imageData.attr('src', '')
-        imageInput.val('')
+            Object.keys(data).map(key => {
+                if (window.localStorage.getItem('user') == key)
+                    creatorName = data[key].name
+            })
+
+            appendToDatabase(name.val(), description.val(), price.val(), creatorName, imageData.attr('src'))
+            name.val('')
+            description.val('')
+            price.val('')
+            imageData.attr('src', '')
+            imageInput.val('')
+        })
     })
 })

@@ -1,5 +1,7 @@
 import { getDatabase, ref, child, get, push, update, remove} from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js'
 
+export const databaseUrl = 'https://ifrs-hosting-default-rtdb.firebaseio.com/'
+
 /**
  * Takes a product object and writes it to the databas
  * @param {String} name 
@@ -7,13 +9,14 @@ import { getDatabase, ref, child, get, push, update, remove} from 'https://www.g
  * @param {Number} price 
  * @param {String} type 
  */
-export const appendToDatabase = async (name, description, price, image) => {
+export const appendToDatabase = async (name, description, price, creator, image) => {
     const db = getDatabase()
 
     const postData = {
         name: name,
         description: description,
         price: price,
+        creator: creator,
         image: image,
     }
 
@@ -43,4 +46,17 @@ export const removeFromDatabase = key => {
     const target = ref(db, 'products/' + key)
     console.log(target) 
     remove(target)
+}
+
+export const readUsers = async () => {
+    let p
+    
+    await fetch(databaseUrl + 'users/.json', {
+        method: 'GET'
+    })
+    .then(response => {
+        p = response.json()
+    })
+
+    return p
 }

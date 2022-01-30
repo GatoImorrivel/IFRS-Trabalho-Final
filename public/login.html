@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/cover.css" />
+  <title>Login</title>
+</head>
+
+<body>
+  <div class="vignette">
+    <div id="title">
+      Fake Store
+    </div>
+    <div id="menu">
+      <div>
+        <a href="./index.html" class="hover-menu">Home</a>
+      </div>
+      <div>
+        <a href="./store.html" class="hover-menu">Store</a>
+      </div>
+      <div>
+        <a href="./about.html" class="hover-menu">About us</a>
+      </div>
+    </div>
+  </div>
+
+  <h1>Login</h1>
+  <div class="form-wrapper" id="form">
+    <form>
+      <div class="form-group">
+        <label for="userInput" class="form-label">Username:</label>
+        <input type="text" class="form-input" id="userInput">
+      </div>
+      <div class="form-group">
+        <label for="passwordInput" class="form-label">Password:</label>
+        <input type="password" class="form-input" id="passwordInput">
+      </div>
+      <div class="btn-wrapper">
+        <button id="btn-login">Login</button>
+        <button id="btn-register">Register</button>
+      </div>
+    </form>
+  </div>
+  <div class="result-wrapper" id="result-text">
+    <span id="form-result">Teste</span>
+  </div>
+  <script type="module" src="./js/login.js"></script>
+</body>
+
+</html>

@@ -10,7 +10,7 @@ let isFormHidden = true
  * @param {Number} price 
  * @param {String} imageData 
  */
-export const Product = (name, description, price, imageData, key, parentDiv) => {
+export const Product = (name, description, price, imageData, creatorName, key, parentDiv) => {
     // product div
     const productDiv = document.createElement('div')
     productDiv.classList.add('product')
@@ -32,6 +32,7 @@ export const Product = (name, description, price, imageData, key, parentDiv) => 
     const titleDiv = document.createElement('div')
     const descriptionDiv = document.createElement('div')
     const priceDiv = document.createElement('div')
+    const creatorDiv = document.createElement('div')
     const inputBtn = document.createElement('input')
     const removeBtn = document.createElement('input')
     const buttonsDiv = document.createElement('div')
@@ -45,11 +46,14 @@ export const Product = (name, description, price, imageData, key, parentDiv) => 
     inputBtn.classList.add('btn-buy')
     removeBtn.classList.add('btn-remove')
     buttonsDiv.classList.add('buttons-div')
+    creatorDiv.classList.add('creator-div')
 
     // setando HTML
     titleDiv.innerHTML = name
     priceDiv.innerHTML = `Price: $<span class="white">${price}</span>`
     descriptionDiv.innerHTML = description
+
+    creatorDiv.innerHTML = `Created by: <span class="white">${creatorName}</span>`
 
     // setando input
     inputBtn.setAttribute('type', 'button')
@@ -65,6 +69,7 @@ export const Product = (name, description, price, imageData, key, parentDiv) => 
     fieldDiv.appendChild(titleDiv)
     fieldDiv.appendChild(descriptionDiv)
     fieldDiv.appendChild(priceDiv)
+    fieldDiv.appendChild(creatorDiv)
     fieldDiv.appendChild(buttonsDiv)
 
     productDiv.appendChild(fieldDiv)

@@ -5,6 +5,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    function clearStorage() {
+
+      let session = sessionStorage.getItem('register')
+
+      console.log(session)
+      console.log('test')
+
+      if (session == null) {
+        localStorage.removeItem('user')
+        console.log('balls')
+      }
+      sessionStorage.setItem('register', 1)
+    }
+    window.addEventListener('load', clearStorage)
+  </script>
   <title>Store</title>
   <link rel="stylesheet" href="./css/cover.css">
   <style>
@@ -26,7 +42,7 @@
     </div>
     <div id="menu">
       <div>
-        <a href="./trabalho_final.html" class="hover-menu">Home</a>
+        <a href="./index.html" class="hover-menu">Home</a>
       </div>
       <div>
         <a href="./store.html" class="hover-menu">Store</a>

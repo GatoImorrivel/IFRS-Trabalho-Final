@@ -4,7 +4,7 @@ body {
   margin: 50px;
   text-align: center;
   line-height: 26px;
-  background-color: #14161a;
+  background-color: #202227;
   overflow-x: hidden;
 }
 
@@ -156,6 +156,11 @@ body {
   font-size: 1.3em;
   max-width: 50%;
   align-self: center;
+  overflow-wrap: break-word;
+}
+
+.creator-div {
+  color:rgb(107, 107, 207);
   overflow-wrap: break-word;
 }
 
