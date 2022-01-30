@@ -9,6 +9,10 @@ body {
   color: white;
 }
 
+.hover-menu {
+  text-decoration: underline 2px rgba(255, 255, 255, 0.5);
+}
+
 .hover-menu:visited {
   color: white;
 }
