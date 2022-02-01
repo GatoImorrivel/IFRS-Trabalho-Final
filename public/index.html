@@ -10,12 +10,8 @@
 
       let session = sessionStorage.getItem('register')
 
-      console.log(session)
-      console.log('test')
-
       if (session == null) {
         localStorage.removeItem('user')
-        console.log('balls')
       }
       sessionStorage.setItem('register', 1)
     }
@@ -49,6 +45,9 @@
       </div>
       <div>
         <a href="./about.html" class="hover-menu">About us</a>
+      </div>
+      <div>
+        <a href="./login.html" class="hover-menu">Logout</a>
       </div>
     </div>
     <div id="home" class="fade-in">

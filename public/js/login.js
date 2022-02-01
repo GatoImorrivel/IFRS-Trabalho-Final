@@ -9,6 +9,8 @@ document.getElementsByTagName('head')[0].appendChild(jqueryScript)
 
 document.getElementById('result-text').hidden = true
 
+window.localStorage.removeItem('user')
+
 const sucessColor = '#0f0'
 const errorColor = '#f00'
 

@@ -26,8 +26,6 @@ jqueryScript.type = 'text/javascript'
 document.getElementsByTagName('head')[0].appendChild(jqueryScript)
 //#endregion
 
-console.log(window.localStorage.getItem('user'))
-
 if (window.localStorage.getItem('user') == null) {
     window.location = './login.html'
 }
